@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrisisShield AI - Citizen Portal</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">🚨 CrisisShield AI</div>
+        <nav>
+            <a href="/" class="active">Citizen Portal</a>
+            <a href="/dashboard">Authority Dashboard</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="card animate-fade">
+            <h2>📢 Report an Emergency Incident</h2>
+            <p class="subtitle">Submit crisis incidents in English, Hindi, Malayalam, or Tamil. AI will translate and alert rescue teams.</p>
+            <form id="incidentForm">
+                <label for="incidentText">What is happening?</label>
+                <textarea id="incidentText" placeholder="Example: Flood water entering medical camp basement or Road blocked by landslide near high school..." required></textarea>
+                
+                <div class="location-box">
+                    <button type="button" id="geoBtn" class="btn-secondary">📍 Fetch My Location Coordinates</button>
+                    <span id="geoStatus">Default Coordinates Loaded</span>
+                </div>
+
+                <div id="manualLocationContainer" style="margin-top: 1rem; margin-bottom: 1rem;">
+                    <label for="manualLocationInput" style="display: block; margin-bottom: 0.4rem; font-weight: bold; font-size: 0.9rem;">Or Type Incident Location Address / Landmark:</label>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <input type="text" id="manualLocationInput" placeholder="Enter specific location (e.g., Aluva Metro Station, Kochi)..." 
+                               style="flex-grow: 1; padding: 0.75rem; background: #0f0f11; border: 1px solid var(--border); border-radius: 6px; color: #ffffff; font-size: 0.9rem;">
+                        <button type="button" id="verifyAddressBtn" class="btn-secondary" style="margin: 0; padding: 0 1rem; white-space: nowrap; background: #2563eb; color: #fff; border: none;">AI Locate</button>
+                    </div>
+                    <div id="addressResolutionStatus" style="font-size: 0.82rem; margin-top: 0.4rem; color: var(--text-muted);"></div>
+                </div>
+                <button type="submit" class="btn-primary">File Emergency Report</button>
+            </form>
+            <div id="reportResponse" class="result-box hidden"></div>
+        </section>
+
+        <section class="card animate-fade">
+            <h2>🛡️ Misinformation & Scam Verification Radar</h2>
+            <p class="subtitle">Paste viral WhatsApp alerts, suspicious donation requests, or evacuation announcements to assess authenticity.</p>
+            <form id="verifyForm">
+                <label for="verifyText">Paste suspicious text content or links:</label>
+                <textarea id="verifyText" placeholder="Example: Emergency notice! Dam gates opening in 10 minutes, transfer 5000 rupees to this account for rescue supplies..." required></textarea>
+                <button type="submit" class="btn-accent">Run Integrity Verification Scan</button>
+            </form>
+            <div id="verifyResponse" class="result-box hidden"></div>
+        </section>
+    </main>
+
+    <script src="/js/app.js"></script>
+</body>
+</html>

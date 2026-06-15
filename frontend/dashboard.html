@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrisisShield AI - Command Dashboard</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">🚨 CrisisShield AI Command Control</div>
+        <nav>
+            <a href="/">Citizen Portal</a>
+            <a href="/dashboard" class="active">Authority Dashboard</a>
+        </nav>
+    </header>
+
+    <main class="dashboard-grid">
+        <section class="sidebar-feed card" style="display: flex; flex-direction: column; height: 100%;">
+            <h2>⚠️ Real-Time Triage Feed</h2>
+            
+            <div class="filter-controls" style="margin-bottom: 1.25rem; display: flex; flex-direction: column; gap: 0.75rem;">
+                <div style="position: relative; width: 100%;">
+                    <input type="text" id="feedSearch" placeholder="🔍 Search keywords (e.g., flood, rescue)..." 
+                           style="width: 100%; padding: 0.75rem; background: #0f0f11; border: 1px solid var(--border); border-radius: 6px; color: #ffffff; box-sizing: border-box; font-size: 0.9rem; transition: border-color 0.2s;"
+                           onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+                </div>
+                
+                <select id="feedSort" style="width: 100%; padding: 0.75rem; background: #0f0f11; border: 1px solid var(--border); border-radius: 6px; color: #ffffff; font-weight: bold; cursor: pointer; font-size: 0.9rem; transition: border-color 0.2s;"
+                        onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+                    <option value="newest">🕒 Sort: Newest First</option>
+                    <option value="oldest">⏳ Sort: Oldest First</option>
+                    <option value="priority">🔥 Sort: Critical Priority First</option>
+                </select>
+            </div>
+            
+            <div id="incidentFeed" class="scroll-feed" style="flex-grow: 1; overflow-y: auto; padding-right: 4px;">Loading streaming reports...</div>
+        </section>
+
+        <section class="map-view card">
+            <h2>🗺️ Live Geospatial Operations Mapping Grid</h2>
+            <div id="map"></div>
+        </section>
+    </main>
+
+    <div id="summaryModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 9999; justify-content: center; align-items: center; padding: 1rem; box-sizing: border-box;">
+        <div style="background: var(--card-dark); border: 1px solid var(--border); border-radius: 8px; width: 100%; max-width: 500px; padding: 1.75rem; color: var(--text-light); position: relative; max-height: 90vh; overflow-y: auto; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
+            <button onclick="closeSummaryModal()" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: var(--text-muted); font-size: 1.5rem; cursor: pointer; padding: 0; line-height: 1;" onmouseover="this.style.color='var(--text-light)'" onmouseout="this.style.color='var(--text-muted)'">&times;</button>
+            
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <script src="/js/map.js"></script>
+</body>
+</html>
